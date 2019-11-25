@@ -43,7 +43,7 @@
       }
     ],
     "react/static-property-placement": [1, "static public field"],
-    "react/state-in-constructor": [1, "never"],
+    "react/state-in-constructor": [0, "never"],
     "react/sort-comp": [
       2,
       {

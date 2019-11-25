@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
+import TaskEditor from './TaskEditor/TaskEditor';
 
 class App extends Component {
-  state = {};
+  constructor() {
+    super();
+
+    this.state = {
+      tasks: [],
+      filter: '',
+    };
+  }
 
   render() {
-    return <div>App</div>;
+    return (
+      <div>
+        <TaskEditor />
+      </div>
+    );
   }
 }
 
