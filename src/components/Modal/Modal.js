@@ -19,20 +19,29 @@ export default class Modal extends Component {
   }
 
   componentWillUnmount() {
+    // console.log('componentWillUnmount');
     window.removeEventListener('keydown', this.handleKeyPress);
   }
 
   handleKeyPress = e => {
-    console.log(e);
+    // console.log(e);
+    // console.log(e.code);
+    // console.log(e.keyCode);
 
-    if (e.code !== 'Escape') {
+    if (e.keyCode !== 27) {
       return;
     }
+
+    // if (e.code !== 'Escape') {
+    //   return;
+    // }
 
     this.props.onClose();
   };
 
   handleBackdropClick = e => {
+    // console.log('this.backdropRef.current ', this.backdropRef.current);
+    // console.log('e.target ', e.target);
     if (this.backdropRef.current && e.target !== this.backdropRef.current) {
       return;
     }
