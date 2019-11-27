@@ -1,9 +1,6 @@
-import React, { Component, createRef } from 'react';
-import { createPortal } from 'react-dom';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Modal.module.css';
-
-const MODAL_ROOT = document.querySelector('#modal-root');
 
 export default class Modal extends Component {
   static propTypes = {
@@ -11,8 +8,6 @@ export default class Modal extends Component {
     children: PropTypes.node.isRequired,
     onClose: PropTypes.func.isRequired,
   };
-
-  backdropRef = createRef();
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyPress);
@@ -40,9 +35,9 @@ export default class Modal extends Component {
   };
 
   handleBackdropClick = e => {
-    // console.log('this.backdropRef.current ', this.backdropRef.current);
-    // console.log('e.target ', e.target);
-    if (this.backdropRef.current && e.target !== this.backdropRef.current) {
+    // console.log(e.target);
+    // console.log(e.currentTarget);
+    if (e.target !== e.currentTarget) {
       return;
     }
 
@@ -52,17 +47,14 @@ export default class Modal extends Component {
   render() {
     const { children } = this.props;
 
-    // https://github.com/evcohen/eslint-plugin-jsx-a11y/issues/91
-    return createPortal(
+    return (
       <div
         className={styles.backdrop}
-        ref={this.backdropRef}
         onClick={this.handleBackdropClick}
         role="presentation"
       >
         <div className={styles.modal}>{children}</div>
-      </div>,
-      MODAL_ROOT,
+      </div>
     );
   }
 }
