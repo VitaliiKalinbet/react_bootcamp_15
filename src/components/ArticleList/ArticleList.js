@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import withLog from '../../hoc/withLog';
+import ArticleListItem from '../ArticleListItem/ArticleListItem';
 
 const ArticleList = ({ items }) => {
   return (
-    <ul>
+    <ul style={{ display: 'flex', flexDirection: 'column' }}>
       {items.map(el => (
-        <li key={el.objectID}>
-          <a href={el.url}>
-            <p>{el.title}</p>
-          </a>
-        </li>
+        <ArticleListItem key={el.objectID} url={el.url} title={el.title} />
       ))}
     </ul>
   );
@@ -19,4 +17,4 @@ ArticleList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
-export default ArticleList;
+export default withLog(ArticleList);

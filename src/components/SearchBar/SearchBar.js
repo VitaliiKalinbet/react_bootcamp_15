@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import Toggle from '../../renderProp/Toggle';
 
 class SearchBar extends Component {
   state = {
@@ -22,10 +23,21 @@ class SearchBar extends Component {
   render() {
     const { query } = this.state;
     return (
-      <form onSubmit={this.hahdleSubmit}>
-        <input value={query} onChange={this.handleChange} type="text" />
-        <button type="submit">Serch</button>
-      </form>
+      <Toggle>
+        {({ isOpen, toggle }) => (
+          <>
+            <button onClick={toggle} type="button">
+              {isOpen ? 'Hide search bar' : 'Show search bar'}
+            </button>
+            {isOpen && (
+              <form onSubmit={this.hahdleSubmit}>
+                <input value={query} onChange={this.handleChange} type="text" />
+                <button type="submit">Serch</button>
+              </form>
+            )}
+          </>
+        )}
+      </Toggle>
     );
   }
 }

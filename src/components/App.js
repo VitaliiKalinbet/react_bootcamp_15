@@ -11,7 +11,7 @@ class App extends Component {
     articles: [],
     isLoading: false,
     pageNumber: 1,
-    query: '',
+    query: 'css',
   };
 
   componentDidMount() {
