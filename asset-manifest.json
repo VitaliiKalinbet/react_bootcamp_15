@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/react_bootcamp_15/static/js/main.6cad8485.chunk.js",
+    "main.js.map": "/react_bootcamp_15/static/js/main.6cad8485.chunk.js.map",
+    "runtime-main.js": "/react_bootcamp_15/static/js/runtime-main.eeca8cbc.js",
+    "runtime-main.js.map": "/react_bootcamp_15/static/js/runtime-main.eeca8cbc.js.map",
+    "static/js/2.17cc5efc.chunk.js": "/react_bootcamp_15/static/js/2.17cc5efc.chunk.js",
+    "static/js/2.17cc5efc.chunk.js.map": "/react_bootcamp_15/static/js/2.17cc5efc.chunk.js.map",
+    "index.html": "/react_bootcamp_15/index.html",
+    "precache-manifest.ada8ae528473563187f094201a2ef66d.js": "/react_bootcamp_15/precache-manifest.ada8ae528473563187f094201a2ef66d.js",
+    "service-worker.js": "/react_bootcamp_15/service-worker.js"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.eeca8cbc.js",
+    "static/js/2.17cc5efc.chunk.js",
+    "static/js/main.6cad8485.chunk.js"
+  ]
+}
