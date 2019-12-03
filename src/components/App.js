@@ -1,11 +1,39 @@
-import React, { Component } from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
-import HomePage from '../pages/HomePage/HomePage';
-import ShowsPage from '../pages/ShowsPage/ShowsPage';
-import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+import React, { Component, lazy, Suspense } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Loadable from 'react-loadable';
+// import HomePage from '../pages/HomePage/HomePage';
+// import ShowsPage from '../pages/ShowsPage/ShowsPage';
+// import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+// import ShowDetailsPage from '../pages/ShowDetailsPage/ShowDetailsPage';
 import Navigation from './Navigation/Navigation';
-import ShowDetailsPage from '../pages/ShowDetailsPage/ShowDetailsPage';
+import Loader from './Loader/Loader';
 import routes from '../routes';
+
+const AsyncHomePage = Loadable({
+  loader: () =>
+    import('../pages/HomePage/HomePage' /* webpackChunkName: "home-page" */),
+  loading: Loader,
+  timedOut: 2000,
+  pastDelay: 300,
+});
+
+const AsyncShowsPage = Loadable({
+  loader: () =>
+    import('../pages/ShowsPage/ShowsPage' /* webpackChunkName: "shows-page" */),
+  loading: Loader,
+});
+
+const AsyncNotFoundPage = lazy(() =>
+  import(
+    '../pages/NotFoundPage/NotFoundPage' /* webpackChunkName: "notfound-page" */
+  ),
+);
+
+const AsyncShowDetailsPage = lazy(() =>
+  import(
+    '../pages/ShowDetailsPage/ShowDetailsPage' /* webpackChunkName: "showdetails-page" */
+  ),
+);
 
 class App extends Component {
   state = {};
@@ -14,14 +42,17 @@ class App extends Component {
     return (
       <>
         <Navigation />
-        <Switch>
-          <Route exact path={routes.HOME} component={HomePage} />
-          <Route path={routes.SHOWS_DETAILS} component={ShowDetailsPage} />
-          <Route path={routes.SHOWS} component={ShowsPage} />
-          <Route component={NotFoundPage} />
-          {/* Использование компонрента Route без пропа path и и спользование компонента Redirect взаимозаменяемые вещи, тут обое находятся для примера, но в данном примере до Redirect никогда не дойдет  */}
-          <Redirect to="/" />
-        </Switch>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Switch>
+            <Route exact path={routes.HOME} component={AsyncHomePage} />
+            <Route
+              path={routes.SHOWS_DETAILS}
+              component={AsyncShowDetailsPage}
+            />
+            <Route path={routes.SHOWS} component={AsyncShowsPage} />
+            <Route component={AsyncNotFoundPage} />
+          </Switch>
+        </Suspense>
       </>
     );
   }
