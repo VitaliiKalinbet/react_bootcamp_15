@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+// import queryString from 'query-string';
 import * as API from '../../services/api';
 import SearchBar from '../../components/SearchBar/SearchBar';
 
@@ -17,6 +18,16 @@ class ShowsPage extends Component {
 
   componentDidMount() {
     const { location } = this.props;
+
+    // const {history } = this.props;
+    // history.push({
+    //   ...location,
+    //   search: '?search=batman&cvb=dfg',
+    // });
+    // console.log('location.search ', location.search);
+    // const parsedLocationSearch = queryString.parse(location.search);
+    // console.log('parsedLocationSearch ', parsedLocationSearch);
+
     const currentSearch = new URLSearchParams(location.search).get('search');
 
     if (!currentSearch) {
