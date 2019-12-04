@@ -7,12 +7,7 @@ import popTransition from '../../transitions/pop.module.css';
 const List = ({ items, onDelete }) => (
   <TransitionGroup component="ul" className={styles.list}>
     {items.map(item => (
-      <CSSTransition
-        key={item.id}
-        timeout={200}
-        unmountOnExit
-        classNames={popTransition}
-      >
+      <CSSTransition key={item.id} timeout={5000} classNames={popTransition}>
         <li className={styles.item}>
           {item.text}
           <Button label="Delete" onClick={() => onDelete(item.id)} />

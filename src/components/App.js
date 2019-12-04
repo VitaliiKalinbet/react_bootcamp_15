@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import faker from 'faker';
 import List from './List/List';
 import Button from './Button/Button';
 import Menu from './Menu/Menu';
+// import popTransition from '../transitions/pop.module.css';
+import slideTransition from '../transitions/slide.module.css';
 
 export default class App extends Component {
   state = {
     items: [],
+    isShow: true,
   };
 
   addItem = () => {
@@ -24,8 +28,14 @@ export default class App extends Component {
     }));
   };
 
+  showHideTitle = () => {
+    this.setState(prevState => ({
+      isShow: !prevState.isShow,
+    }));
+  };
+
   render() {
-    const { items } = this.state;
+    const { items, isShow } = this.state;
 
     return (
       <>
@@ -34,6 +44,23 @@ export default class App extends Component {
         <Button label="Add Item" onClick={this.addItem} />
         <hr />
         <List items={items} onDelete={this.removeItem} />
+
+        <div>
+          <button onClick={this.showHideTitle} type="button">
+            Show/Hide
+          </button>
+          <CSSTransition
+            in={isShow}
+            timeout={2000}
+            unmountOnExit
+            classNames={slideTransition}
+          >
+            <h2>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis,
+              cumque?
+            </h2>
+          </CSSTransition>
+        </div>
       </>
     );
   }
