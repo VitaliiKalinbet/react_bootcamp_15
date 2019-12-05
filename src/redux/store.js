@@ -1,9 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 import { createStore } from 'redux';
-import timerReducer from './timer/timerReducers';
+import rootReducer from './rootReducer';
 
 const store = createStore(
-  timerReducer,
+  rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Timer from './Timer/Timer';
+import NoteForm from './NoteForm/NoteForm';
+import NoteList from './NoteList/NoteList';
 
 class App extends Component {
   state = {};
@@ -8,6 +10,9 @@ class App extends Component {
     return (
       <div>
         <Timer />
+        <hr />
+        <NoteForm />
+        <NoteList />
       </div>
     );
   }
