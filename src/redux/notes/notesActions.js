@@ -13,3 +13,10 @@ export const deleteNoteAction = deleteId => ({
     id: deleteId,
   },
 });
+
+export const addFilterValueAction = inputValue => ({
+  type: types.ADD_FILTER_VALUE,
+  payload: {
+    filter: inputValue,
+  },
+});

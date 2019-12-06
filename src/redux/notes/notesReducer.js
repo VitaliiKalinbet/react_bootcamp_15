@@ -1,4 +1,15 @@
+import { combineReducers } from 'redux';
 import types from '../types';
+
+const filterReducer = (state = '', action) => {
+  switch (action.type) {
+    case types.ADD_FILTER_VALUE:
+      return action.payload.filter;
+
+    default:
+      return state;
+  }
+};
 
 const notesReducer = (state = [], action) => {
   switch (action.type) {
@@ -13,4 +24,7 @@ const notesReducer = (state = [], action) => {
   }
 };
 
-export default notesReducer;
+export default combineReducers({
+  filter: filterReducer,
+  notesArr: notesReducer,
+});
