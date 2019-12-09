@@ -1,0 +1,38 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": ["value", "notes"],
+  "properties": {
+    "value": {
+      "$id": "#/properties/value",
+      "type": "integer",
+      "title": "The Value Schema",
+      "default": 0,
+      "examples": [0]
+    },
+    "notes": {
+      "$id": "#/properties/notes",
+      "type": "object",
+      "title": "The Notes Schema",
+      "required": ["filter", "notesArr"],
+      "properties": {
+        "filter": {
+          "$id": "#/properties/notes/properties/filter",
+          "type": "string",
+          "title": "The Filter Schema",
+          "default": "",
+          "examples": [""],
+          "pattern": "^(.*)$"
+        },
+        "notesArr": {
+          "$id": "#/properties/notes/properties/notesArr",
+          "type": "array",
+          "title": "The Notesarr Schema"
+        }
+      }
+    }
+  }
+}

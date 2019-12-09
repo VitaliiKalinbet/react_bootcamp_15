@@ -20,7 +20,7 @@ import types from '../types';
 const timerReducer = (state = 0, { type, payload }) => {
   switch (type) {
     case types.INCREMENT_TIMER:
-      return state + payload.value;
+      return 'Hello';
 
     case types.DECREMENT_TIMER:
       return state - payload.value;
