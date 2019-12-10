@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import shortid from 'shortid';
-import { addNoteAction } from '../../redux/notes/notesActions';
+import * as NotesOperation from '../../redux/notes/notesOperations';
 
 class NoteForm extends Component {
   state = {
@@ -17,7 +16,8 @@ class NoteForm extends Component {
     e.preventDefault();
 
     const { text } = this.state;
-    this.props.onSave({ text, id: shortid.generate() });
+    const { createNote } = this.props;
+    createNote({ text });
     this.setState({ text: '' });
   };
 
@@ -33,7 +33,7 @@ class NoteForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onSave: data => dispatch(addNoteAction(data)),
+  createNote: data => dispatch(NotesOperation.createNoteOperation(data)),
 });
 
 export default connect(null, mapDispatchToProps)(NoteForm);

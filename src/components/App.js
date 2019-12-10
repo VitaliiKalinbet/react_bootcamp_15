@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import Timer from './Timer/Timer';
+/* eslint-disable react/prop-types */
+import React from 'react';
+import { connect } from 'react-redux';
 import NoteForm from './NoteForm/NoteForm';
 import NoteList from './NoteList/NoteListContainer';
-import NoteFilter from './NoteFilter/NoteFilter';
+import * as NotesSelectors from '../redux/notes/notesSelectors';
+import Loader from './Loader/Loader';
 
-class App extends Component {
-  state = {};
+const App = ({ isLoading }) => {
+  return (
+    <>
+      <NoteForm />
+      <NoteList />
+      {isLoading && <Loader />}
+    </>
+  );
+};
 
-  render() {
-    return (
-      <div>
-        <Timer />
-        <hr />
-        <NoteForm />
-        <NoteFilter />
-        <NoteList />
-      </div>
-    );
-  }
-}
+const mapStateToProps = store => ({
+  isLoading: NotesSelectors.getIsLoading(store),
+});
 
-export default App;
+export default connect(mapStateToProps)(App);

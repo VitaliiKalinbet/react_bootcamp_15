@@ -1,23 +1,56 @@
 import { combineReducers } from 'redux';
 import types from '../types';
 
-const filterReducer = (state = '', action) => {
-  switch (action.type) {
-    case types.ADD_FILTER_VALUE:
-      return action.payload.filter;
+const itemsReducer = (state = [], { type, payload }) => {
+  switch (type) {
+    case types.SUCCESS_CREATE_NOTE:
+      return [...state, payload.note];
+
+    case types.SUCCESS_GET_NOTES:
+      return [...payload.notes];
+
+    case types.ERROR_GET_NOTES:
+      return [];
+
+    case types.SUCCESS_DELETE_NOTE:
+      return state.filter(el => el.id !== payload.id);
 
     default:
       return state;
   }
 };
 
-const notesReducer = (state = [], action) => {
-  switch (action.type) {
-    case types.NOTE_ADD:
-      return [...state, action.payload.note];
+const isLoadingReducer = (state = false, { type }) => {
+  switch (type) {
+    case types.START_CREATE_NOTE:
+    case types.START_GET_NOTES:
+    case types.START_DELETE_NOTE:
+      return true;
 
-    case types.NOTE_DELETE:
-      return state.filter(el => el.id !== action.payload.id);
+    case types.SUCCESS_CREATE_NOTE:
+    case types.ERROR_CREATE_NOTE:
+    case types.SUCCESS_GET_NOTES:
+    case types.ERROR_GET_NOTES:
+    case types.SUCCESS_DELETE_NOTE:
+    case types.ERROR_DELETE_NOTE:
+      return false;
+
+    default:
+      return state;
+  }
+};
+
+const errorReducer = (state = null, { type, payload }) => {
+  switch (type) {
+    case types.ERROR_CREATE_NOTE:
+    case types.ERROR_GET_NOTES:
+    case types.ERROR_DELETE_NOTE:
+      return payload.error;
+
+    case types.SUCCESS_CREATE_NOTE:
+    case types.SUCCESS_GET_NOTES:
+    case types.SUCCESS_DELETE_NOTE:
+      return null;
 
     default:
       return state;
@@ -25,6 +58,7 @@ const notesReducer = (state = [], action) => {
 };
 
 export default combineReducers({
-  filter: filterReducer,
-  notesArr: notesReducer,
+  items: itemsReducer,
+  isLoading: isLoadingReducer,
+  error: errorReducer,
 });
