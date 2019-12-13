@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import routes from '../../routes';
 import * as authSelectors from '../../redux/auth/authSelectors';
 
@@ -17,7 +17,9 @@ const styles = {
   },
 };
 
-const Navigation = ({ isAuth }) => {
+const Navigation = () => {
+  const isAuth = useSelector(store => authSelectors.getIsAuth(store));
+
   return (
     <header style={styles.header}>
       {!isAuth && (
@@ -39,8 +41,4 @@ const Navigation = ({ isAuth }) => {
   );
 };
 
-const mapStateToProps = store => ({
-  isAuth: authSelectors.getIsAuth(store),
-});
-
-export default connect(mapStateToProps)(Navigation);
+export default Navigation;
