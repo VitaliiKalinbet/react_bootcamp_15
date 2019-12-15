@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const TodoList = ({ items }) => (
   <ul>
@@ -8,9 +7,5 @@ const TodoList = ({ items }) => (
     ))}
   </ul>
 );
-
-TodoList.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.string).isRequired
-};
 
 export default TodoList;
