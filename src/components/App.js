@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import TodoEditor from './TodoEditor/TodoEditor';
-import TodoList from './TodoList/TodoList';
+import React, { Component } from "react";
+import TodoEditor from "./TodoEditor/TodoEditor.js";
+import TodoList from "./TodoList/TodoList.js";
 
 class App extends Component {
   state = {
-    todos: [],
+    todos: []
   };
 
   saveTodo = todo => {
     this.setState(state => ({
-      todos: [...state.todos, todo],
+      todos: [...state.todos, todo]
     }));
   };
 
