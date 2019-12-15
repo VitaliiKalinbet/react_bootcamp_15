@@ -46,20 +46,9 @@
 - force component to update
 - assert that input value has changed
 
-### event.preventDefault and onSave prop has been called
+### onSave prop has been called
 
 - find form
 - simulate "submit" event
 - provide a fake event object and feed props to component
 - assert that mocks were called once
-
-## TodoList
-
-### renders a li element for each received item
-
-- setup props
-- find every li
-- assert that li.length === items.length
-
-
-
