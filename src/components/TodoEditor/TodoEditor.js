@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
 class TodoEditor extends Component {
-  static propTypes = {
-    onSave: PropTypes.func.isRequired
-  };
-
   state = {
     text: ""
   };
