@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class TodoEditor extends Component {
   static propTypes = {
-    onSave: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired
   };
 
   state = {
-    text: '',
+    text: ""
   };
 
   textChangeHandler = e => {
     this.setState({
-      text: e.currentTarget.value,
+      text: e.currentTarget.value
     });
   };
 
@@ -21,7 +21,7 @@ class TodoEditor extends Component {
 
     const { onSave } = this.props;
     onSave(this.state.text);
-    this.setState({ text: '' });
+    this.setState({ text: "" });
   };
 
   render() {
